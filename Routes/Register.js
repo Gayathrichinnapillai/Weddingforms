@@ -2,6 +2,7 @@
 var Register=require('../Models/Registration');  
 var express=require('express');  
 var router=express.Router();
+let verifytoken = require('./verifytoken');
 
 router.get('/',function(req,res,next){ 
     Register.find()
@@ -14,7 +15,7 @@ router.get('/',function(req,res,next){
     });
 }); 
 
-router.post('/',function(req,res,next){ 
+router.post('/',verifytoken,function(req,res,next){ 
     // Request validation
     if(!req.body) {
         return res.status(400).send({
@@ -138,7 +139,7 @@ router.post('/',function(req,res,next){
             Pincode:req.body.placeofmarriage.Pincode
         },  
         MarriageDate:req.body.MarriageDate,
-        MarriageNotes:req.body.MarriageNotes,
+        //MarriageNotes:req.body.MarriageNotes,
         whosolemnizedmarriage:req.body.whosolemnizedmarriage,
         Addressofsolemnized:
         {
@@ -155,7 +156,7 @@ router.post('/',function(req,res,next){
        BrideFatherGroom:req.body.BrideFatherGroom,
        BridemotherGroom:req.body.BridemotherGroom,
 
-       Witness:req.body.Witness,
+       //Witness:req.body.Witness,
        Witnessname:req.body.Witnessname,
        Witnessrelation:req.body.Witnessrelation,
        Witnessaddress:{

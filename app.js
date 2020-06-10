@@ -3,7 +3,8 @@ var express = require('express');
 var path = require('path');  
 var cors=require('cors');  
 var logger = require('morgan'); 
-var product=require('./Routes/Register');  
+var forms=require('./Routes/Register');  
+var register=require('./Routes/Userregistration'); 
 var app = express();  
 var bodyParser=require('body-parser');
   
@@ -16,7 +17,8 @@ app.use(logger('dev'));
 app.use(express.json());  
 app.use(express.urlencoded({ extended: false }));  
 app.use(bodyParser.json());
-app.use('/Register',product);  
+app.use('/Register',register);  
+app.use('/weddingform',forms)
 
 // catch 404 and forward to error handler  
 app.use(function(req, res, next) {  
