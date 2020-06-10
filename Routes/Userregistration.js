@@ -62,7 +62,7 @@ router.post('/authenticate',function(req,res,next)
         }); 
        }
     if (user && bcrypt.compareSync(req.body.Password,user[0].Password)) {
-        const token = jwt.sign({ sub: user.id }, config.secretKey,{expiresIn: '20m'});
+        const token = jwt.sign({ sub: user.id }, config.secretKey,{expiresIn: '60m'});
         result.token = token;
         result.result = user;
         res.send(result);       
